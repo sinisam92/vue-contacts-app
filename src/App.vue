@@ -3,6 +3,8 @@
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Contacts</a>
+        <router-link to="/login">Login</router-link>
+
       </nav>
     </header>
     <main class="container">
@@ -34,7 +36,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 .footer {
     position: absolute;
@@ -43,5 +45,8 @@ export default {
     height: 60px;
     line-height: 60px;
     background-color: #f5f5f5;
+}
+main {
+  margin-top: 100px;
 }
 </style>
