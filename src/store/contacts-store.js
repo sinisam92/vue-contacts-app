@@ -13,20 +13,12 @@ export default {
             state.errors = payload
         },
         SET_CONTACTS(state, { data, total, per_page, current_page }) {
-            state = {
-                ...state,
-                data,
-                total,
-                per_page,
-                current_page
+       
+            state.data = data;
+            state.total = total;
+            state.per_page = per_page;
+            state.current_page = current_page;
             }
-        }
-        // SET_CONTACTS(state, payload) {
-        //     state.data = payload.data;
-        //     state.total = payload.total;
-        //     state.per_page = payload.per_page;
-        //     state.current_page = payload.current_page;
-        //     }
     },
     actions: {
        async getContacts(context, payload) {

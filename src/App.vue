@@ -3,7 +3,8 @@
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Contacts</a>
-        <router-link to="/login">Login</router-link>
+        <router-link class="nav-link" to="/login" v-if="!user">Login</router-link>
+        <a class="nav-link" @click="onLogoutClick" v-if="user">Logout</a>
 
       </nav>
     </header>
@@ -19,12 +20,20 @@
 </template>
 
 <script>
-
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'app',
-  components: {
-    
+  methods: {
+    ...mapActions([ 'logout' ]),
+    onLogoutClick() {
+      this.logout();
+    }
+  },
+  computed: {
+    ...mapGetters({
+      user: 'getUser'
+    })
   }
 }
 </script>
@@ -48,5 +57,8 @@ export default {
 }
 main {
   margin-top: 100px;
+}
+.nav-link {
+  color: #fff !important;
 }
 </style>

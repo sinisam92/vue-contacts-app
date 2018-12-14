@@ -1,9 +1,16 @@
 <template>
-    <p>Contact list</p>
+    <div>
+        <p>Contact List</p>
+        <ul>
+            <li v-for="contact in contacts" :key="contact.id">
+                {{ contact.first_name }}
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 export default {
     name: 'ContactList',
     created() {
@@ -13,6 +20,14 @@ export default {
         ...mapActions([
             'getContacts'
         ])
+    },
+    computed: {
+    ...mapGetters({
+            contacts: 'getContactsData',
+            current_page: 'getCurrentPage',
+            total: 'getTotalNumberOfContacts',
+            per_page: 'getNumberOfContactsPerPage'
+        })
     }
 }
 </script>

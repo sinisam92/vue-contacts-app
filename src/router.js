@@ -9,18 +9,40 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: '/',
-        component: ContactList
+        component: ContactList,
+        name: 'home'
     },
     {
         path: '/login',
         component: Login,
-        name: 'login'
-    }
+        name: 'login',
+        meta: {
+            guest: true
+        },
+        
+    },
+    // {
+    //     path:'*',
+    //     name: 'not-found',
+    //     component: ContactList
+    // }
 ]
 
 const router = new VueRouter({
     routes,
     mode: 'history'
 });
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated =  !!localStorage.getItem('token');
+  if (isAuthenticated && to.meta.guest) {
+       return next({ name: 'home'});
+  }
+  if (!isAuthenticated && !to.meta.guest) {
+    return next({ name: 'login'});
+  }
+    return next();
+});
+
 
 export default router;

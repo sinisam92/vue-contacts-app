@@ -1,9 +1,9 @@
 <template>
-    <form class="form-signin" @submit.prevent="login" >
+    <form class="form-signin" @submit.prevent="submitForm" >
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input 
-      type="email" 
+      type="text" 
       id="inputEmail" 
       class="form-control" 
       placeholder="Email address" 
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: 'Login',
   data() {
@@ -32,10 +33,10 @@ export default {
       }
   },
   methods: {
-      login() {
-          // console.log({ email: this.email, password: this.password });
-          
-      }
+      submitForm() {
+          this.login({ email: this.email, password:  this.password, nextRouteName: 'home'});      
+      },
+      ...mapActions(['login'])
   }
 }
 </script>
